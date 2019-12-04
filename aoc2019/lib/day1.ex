@@ -40,6 +40,21 @@ defmodule Day1 do
     end)
   end
 
+  @doc """
+  Rewrite of part 1 using Enum.sum based on Darren's recommendation.
+  It looks cleaner now.
+
+  #Examples
+
+  iex> Day1.fuel_sum_sum("input/day1.input")
+  3295206
+  """
+  def fuel_sum_sum(input) do
+    File.stream!(input)
+    |> Stream.map(&calc_fuel_required1/1)
+    |> Enum.sum
+  end
+
   def calc_fuel_required1(weight) when is_binary(weight) do
     case Integer.parse(weight) do
       {num, _rest} -> div(num, 3) - 2
